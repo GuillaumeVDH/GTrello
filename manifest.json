@@ -21,6 +21,7 @@
   "permissions": [
     "tabs",
     "https://mail.google.com/*",
-    "https://developers.google.com/maps/*"
+    "https://developers.google.com/maps/*",
+    "declarativeContent"
   ]
 }

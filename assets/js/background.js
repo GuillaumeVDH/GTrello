@@ -1,49 +1,23 @@
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    console.log(changeInfo.status);
-    if (changeInfo.status === "complete") {
-        checkForValidUrl(tab);
-    }
-});
+// Copyright (c) 2011 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
-chrome.tabs.onSelectionChanged.addListener(function(tabId, selectInfo) {
-  chrome.tabs.getSelected(null, function(tab) {
-    //checkForValidUrl(tab);
+// When the extension is installed or upgraded ...
+chrome.runtime.onInstalled.addListener(function() {
+  // Replace all rules ...
+  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+    // With a new rule ...
+    chrome.declarativeContent.onPageChanged.addRules([
+      {
+        // That fires when a page's URL contains a 'g' ...
+        conditions: [
+          new chrome.declarativeContent.PageStateMatcher({
+            pageUrl: { urlContains: 'g' },
+          })
+        ],
+        // And shows the extension's page action.
+        actions: [ new chrome.declarativeContent.ShowPageAction() ]
+      }
+    ]);
   });
 });
-
-/* Manage storage between ext & content script
- */
-chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
-  // local storage request
-  if (request.storage) {
-    if (typeof request.value !== 'undefined') {
-      localStorage[request.storage] = request.value;
-      console.log(localStorage);
-    }
-    sendResponse({storage: localStorage[request.storage]});
-  } else {
-    sendResponse({});
-  }
-});
-
-function checkForValidUrl(tab) {
-  if (tab.url.indexOf('/mail.google.com/') >= 0) {
-  chrome.pageAction.show(tab.id);
-
-  console.log(tab.url);
-
-    chrome.tabs.sendMessage(
-      //Selected tab id
-      tab.id,
-      //Params inside a object data
-              {message: "initialize"},
-      //Optional callback function
-      function(response) {
-          //console.log(response);
-          //update panel status
-          //app.tabs[tab.id].panel.visible = response.status;
-          //updateIconStatus(tab.id) 
-      }
-    );
-  }
-}
