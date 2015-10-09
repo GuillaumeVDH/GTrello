@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self'",
+  "name": "GTrello",
+  "description": "This extension allow you to quickly transform a mail into a Trello cards",
+  "version": "1.0",
+  "background": {
+    "scripts": ["assets/js/background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://www.google.com/*"],
+      "js": ["assets/js/gtrello.js"]
+    }
+  ],
+  "page_action": {
+    "default_name": "Display Map",
+    "default_icon": "assets/images/icon.png",
+    "default_popup": "assets/html/popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "https://mail.google.com/*",
+    "https://developers.google.com/maps/*"
+  ]
+}
