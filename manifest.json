@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self'",
+  "content_security_policy": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'",
   "name": "GTrello",
   "description": "This extension allow you to quickly transform a mail into a Trello cards",
   "version": "1.0",
@@ -10,7 +10,9 @@
   "content_scripts": [
     {
       "matches": ["http://www.google.com/*"],
-      "js": ["assets/js/gtrello.js"]
+      "js": ["assets/js/jquery-2.1.4.min.js","assets/js/gtrello.js"]
+    /*"js": ["https://api.trello.com/1/client.js?key=8ddd1cdc81a0c0f22b1d176ce577a323"]
+      "js": ["assets/js/trelloClient.js?key=8ddd1cdc81a0c0f22b1d176ce577a323"]*/
     }
   ],
   "page_action": {
