@@ -1,29 +1,42 @@
 {
-  "manifest_version": 2,
-  "content_security_policy": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'",
   "name": "GTrello",
-  "description": "This extension allow you to quickly transform a mail into a Trello cards",
-  "version": "1.0",
-  "background": {
-    "scripts": ["assets/js/background.js"]
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Googlize your trello !",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
-  "content_scripts": [
-    {
-      "matches": ["http://www.google.com/*"],
-      "js": ["assets/js/jquery-2.1.4.min.js","assets/js/gtrello.js"]
-    /*"js": ["https://api.trello.com/1/client.js?key=8ddd1cdc81a0c0f22b1d176ce577a323"]
-      "js": ["assets/js/trelloClient.js?key=8ddd1cdc81a0c0f22b1d176ce577a323"]*/
-    }
-  ],
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "src/bg/background.js"
+    ],
+    "persistent": true
+  },
+  "options_page": "src/settings/index.html",
   "page_action": {
-    "default_name": "Display Map",
-    "default_icon": "assets/images/icon.png",
-    "default_popup": "assets/html/popup.html"
+    "default_icon": "icons/icon19.png",
+    "default_title": "page action demo",
+    "default_popup": "src/page_action/app/index.html"
   },
   "permissions": [
-    "tabs",
-    "https://mail.google.com/*",
-    "https://developers.google.com/maps/*",
-    "declarativeContent"
-  ]
+    "cookies",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://mail.google.com/*",
+        "*://calendar.google.com/*"
+      ],
+      "js": [
+        "src/inject/inject.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+        "src/settings/index.html"
+    ]
 }

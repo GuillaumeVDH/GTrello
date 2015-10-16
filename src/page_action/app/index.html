@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" ng-app="gTrelloApp">
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script type="text/javascript" src="js/lib/hashSearch.js"></script>
+  <script type="text/javascript" src="js/gTrelloApp.js"></script>
+  <script type="text/javascript" src="js/controllers.js"></script>
+  <script type="text/javascript" src="js/lib/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="js/lib/trello.min.js"></script>
+</head>
+<body>
+    <div ng-controller="BoardListCtrl">
+        
+        <ul>
+          <li ng-repeat="board in boards" ng-if="board.closed == false">
+            <span>{{board.name}}</span>
+          </li>
+        </ul>
+    </div>
+</body>
+</html>
