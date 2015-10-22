@@ -1,26 +1,38 @@
 <!doctype html>
-<html lang="en" ng-app="gTrelloApp">
+<html lang="en" ng-app="gTrelloApp" ng-csp>
 <head>
   <meta charset="utf-8">
   <title>My HTML File</title>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
   <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
   <script type="text/javascript" src="js/lib/hashSearch.js"></script>
   <script type="text/javascript" src="js/gTrelloApp.js"></script>
-  <script type="text/javascript" src="js/controllers.js"></script>
+  <script type="text/javascript" src="js/services/utilService.js"></script>
+  <script type="text/javascript" src="js/controllers/mainController.js"></script>
+  <script type="text/javascript" src="js/controllers/boardController.js"></script>
   <script type="text/javascript" src="js/lib/jquery-2.1.3.min.js"></script>
   <script type="text/javascript" src="js/lib/trello.min.js"></script>
 </head>
 <body>
-    <div ng-controller="BoardListCtrl">
-        
-        <ul>
-          <li ng-repeat="board in boards" ng-if="board.closed == false">
-            <span>{{board.name}}</span>
-          </li>
-        </ul>
+    <div ng-controller="MainController" ng-cloak ng-switch="authorized" >
+      <md-content ng-switch-when="true" ng-controller="BoardController">
+        <md-list ng-init="loadBoards()">
+          <md-list-item class="md-2-line" ng-repeat="board in boards" ng-if"board.closed == false">
+            <div class="md-list-item-text">
+              <h3>{{board.name}}</h3>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
+
+      <md-content ng-switch-when="false">
+        <md-button ng-href="{{settingUrl}}" target="_blank" class="md-raised md-primary">
+          Options
+        </md-button>
+      </md-content>
     </div>
 </body>
 </html>

@@ -1,1 +1,5 @@
-var gTrelloApp = angular.module('gTrelloApp', ['ngRoute']);
+var gTrelloApp = angular.module('gTrelloApp', ['ngMaterial']);
+
+gTrelloApp.config( function ($compileProvider) {
+   $compileProvider.aHrefSanitizationWhitelist (/^\s*(chrome-extension):/);
+});

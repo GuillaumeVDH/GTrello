@@ -1,6 +1,6 @@
 {
   "name": "GTrello",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 2,
   "description": "Googlize your trello !",
   "icons": {
@@ -28,8 +28,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://mail.google.com/*",
-        "*://calendar.google.com/*"
+        "*://mail.google.com/*"
+        //will comming soon ! : "*://calendar.google.com/*"
       ],
       "js": [
         "src/inject/inject.js"
