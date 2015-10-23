@@ -8,6 +8,7 @@
   <script src="bower_components/angular-aria/angular-aria.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
   <script type="text/javascript" src="js/lib/hashSearch.js"></script>
   <script type="text/javascript" src="js/gTrelloApp.js"></script>
   <script type="text/javascript" src="js/services/utilService.js"></script>
@@ -15,23 +16,23 @@
   <script type="text/javascript" src="js/controllers/boardController.js"></script>
   <script type="text/javascript" src="js/lib/jquery-2.1.3.min.js"></script>
   <script type="text/javascript" src="js/lib/trello.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <div ng-controller="MainController" ng-cloak ng-switch="authorized" >
-      <md-content ng-switch-when="true" ng-controller="BoardController">
-        <md-list ng-init="loadBoards()">
-          <md-list-item class="md-2-line" ng-repeat="board in boards" ng-if"board.closed == false">
-            <div class="md-list-item-text">
-              <h3>{{board.name}}</h3>
-            </div>
-          </md-list-item>
-        </md-list>
-      </md-content>
-
-      <md-content ng-switch-when="false">
-        <md-button ng-href="{{settingUrl}}" target="_blank" class="md-raised md-primary">
-          Options
-        </md-button>
+      <md-content>
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Menu">
+              <md-icon md-font-library="material-icons">menu</md-icon>
+            </md-button>
+            <h2>
+              <span>GTrello</span>
+            </h2>
+            
+          </div>
+        </md-toolbar>
+        <ng-view></ng-view>
       </md-content>
     </div>
 </body>
