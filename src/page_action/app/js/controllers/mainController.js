@@ -1,6 +1,11 @@
 gTrelloApp
-	.controller("MainController", ["$scope", "$q", "utilService", function($scope, $q, utilService){
+	.controller("MainController", ["$scope", "utilService", "$location", function($scope, utilService, $location){
 		utilService.trelloInit();
 		$scope.authorized = Trello.authorized();
-		$scope.settingUrl = "/src/settings/index.html";
+
+		if(Trello.authorized){
+			$location.url('/boards');
+		} else {
+			$location.url('/test');
+		}
 	}]);
