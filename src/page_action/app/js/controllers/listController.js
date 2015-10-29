@@ -1,16 +1,16 @@
 gTrelloApp
-	.controller("ListController", ["$scope", "$q", "utilService", function($scope, $q, utilService,  $routeParams){
+	.controller("ListController", ["$scope", "$q", "utilService", '$routeParams', function($scope, $q, utilService,  $routeParams){
 		$scope.status;
 		$scope.lists = [];
-		$scope.params = $routeParams;
+		$scope.boardId=$routeParams.boardid;
+
 
 		//function to load boards into $scope.boards
-		$scope.getLists = function($boardId){
+		$scope.getLists = function(){
 			function fetchLists() {
 		        var deferred = $q.defer();
 		        Trello.get(
-				//'/boards/'+$scope.params.boardId+'/lists',
-				'/boards/54a806cfbb34c337022becb8/lists',
+				'/boards/'+$scope.boardId+'/lists',
 		        	{fields: "closed,name,id"},
 		        	function(data) {
 		            	deferred.resolve(data);

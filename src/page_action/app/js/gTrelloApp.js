@@ -10,8 +10,7 @@ gTrelloApp.config(['$routeProvider', function($routeProvider){
 		.when("/boards", {
 			templateUrl: templateFolder + 'boards.html'
 		})
-    	//.when("/lists/:boardId", {
-   		.when("/lists", {
+    	.when("/lists/:boardid", {
 			templateUrl: templateFolder + 'lists.html'
 		})
 		.otherwise({
