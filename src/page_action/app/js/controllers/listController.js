@@ -9,7 +9,7 @@ gTrelloApp
 			function fetchLists() {
 		        var deferred = $q.defer();
 		        Trello.get(
-				//'/boards/'+{{params.boardId}}+'/lists',
+				//'/boards/'+$scope.params.boardId+'/lists',
 				'/boards/54a806cfbb34c337022becb8/lists',
 		        	{fields: "closed,name,id"},
 		        	function(data) {
