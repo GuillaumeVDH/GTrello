@@ -1,0 +1,9 @@
+<md-content ng-controller="ListController">
+  <md-list ng-init="getLists()">
+    <md-list-item class="md-2-line" ng-repeat="list in lists" ng-if="list.closed == false">
+      <div class="md-list-item-text">
+        <h3>{{list.name}}</h3>
+      </div>
+    </md-list-item>
+  </md-list>
+</md-content>
