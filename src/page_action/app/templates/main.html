@@ -1,0 +1,27 @@
+<div ng-controller="MainController" ng-cloak ng-switch="authorized" style="min-width: 500px">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Menu">
+                <md-icon md-font-library="material-icons">menu</md-icon>
+            </md-button>
+            <h2>
+                <span>GTrello</span>
+            </h2>
+
+            <md-button ng-if="login.isLoggedIn" class="md-icon-button" aria-label="Log out" ng-click="login.logoutFromTrello()">
+                <md-icon md-font-library="material-icons">exit_to_app</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-content>
+        <div layout style="min-height: 300px">
+            <div flex ng-if="login.isLoggedIn" >
+                Je suis logué !
+            </div>
+            <div flex ng-if="!login.isLoggedIn" ng-init="showConfirm($event)">
+                Je ne suis pas logué...
+            </div>
+        </div>
+    </md-content>
+</div>
