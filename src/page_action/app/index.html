@@ -2,7 +2,7 @@
 <html lang="en" ng-app="gTrelloApp" ng-csp>
 <head>
   <meta charset="utf-8">
-  <title>My HTML File</title>
+  <title>GTrello</title>
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -20,21 +20,6 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <div ng-controller="MainController" ng-cloak ng-switch="authorized" >
-      <md-content>
-        <md-toolbar>
-          <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Menu">
-              <md-icon md-font-library="material-icons">menu</md-icon>
-            </md-button>
-            <h2>
-              <span>GTrello</span>
-            </h2>
-            
-          </div>
-        </md-toolbar>
-        <ng-view></ng-view>
-      </md-content>
-    </div>
+    <ng-view></ng-view>
 </body>
 </html>

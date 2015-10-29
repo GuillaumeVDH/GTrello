@@ -8,6 +8,25 @@
 //example of using a message handler from the inject scripts
 chrome.extension.onMessage.addListener(
   function(request, sender, sendResponse) {
-  	chrome.pageAction.show(sender.tab.id);
-    sendResponse();
+  	switch(request.name){
+  		case "show_tab":
+	  		chrome.pageAction.show(sender.tab.id);
+	    	sendResponse();
+  			break;
+  		default:
+  		break;
+  	}
   });
+
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if(tab.url == "https://trello.com/1/token/approve"){
+    	chrome.cookies.get({
+    		url: "https://trello.com",
+    		name: "token"
+    	},
+    	function(cookie){
+    		localStorage["trello_token"] = cookie.value;
+    		chrome.tabs.remove(tabId);
+    	});
+    }
+});
