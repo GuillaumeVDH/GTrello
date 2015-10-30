@@ -8,7 +8,7 @@
                 <span>GTrello</span>
             </h2>
 
-            <md-button ng-if="login.isLoggedIn" class="md-icon-button" aria-label="Log out" ng-click="login.logoutFromTrello()">
+            <md-button ng-if="userService.isLoggedIn" class="md-icon-button" aria-label="Log out" ng-click="login.logout()">
                 <md-icon md-font-library="material-icons">exit_to_app</md-icon>
             </md-button>
         </div>
@@ -16,10 +16,10 @@
 
     <md-content>
         <div layout style="min-height: 300px">
-            <div flex ng-if="login.isLoggedIn" >
+            <div flex ng-if="userService.isLoggedIn" >
                 Je suis logué !
             </div>
-            <div flex ng-if="!login.isLoggedIn" ng-init="showConfirm($event)">
+            <div flex ng-if="!userService.isLoggedIn" ng-init="showConfirm($event)">
                 Je ne suis pas logué...
             </div>
         </div>

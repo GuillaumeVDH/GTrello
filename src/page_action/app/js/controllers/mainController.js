@@ -1,51 +1,20 @@
 'use strict';
 
 gTrelloApp
-	.controller("MainController", ["$scope", "utilService", "$location", "$mdDialog", function($scope, utilService, $location, $mdDialog){
+	.controller("MainController", [
+        "$scope", "utilService", "$location", "$mdDialog", "userService",
+        function($scope, utilService, $location, $mdDialog, userService){
+
 		utilService.trelloInit();
 
-        $scope.login = {
-            isLoggedIn : false,
-            token : null
-        };
-
-        var updateLogin = function(){
-            $scope.login.isLoggedIn = Trello.authorized();
-            $scope.login.token = Trello.token();
-        };
-
-        $scope.login.loginToTrello = function () {
-            Trello.authorize({
-                type: "popup",
-                name: "GTrello",
-                scope: { write: true, read: true },
-                persist: true,
-                success: function () {
-                    Trello.authorize({
-                        interactive: false,
-                        success: function () {
-                            updateLogin();
-                            chrome.tabs.getCurrent(function(tab){
-                                chrome.pageAction.show(tab.id);
-                            });
-                        }
-                    });
-                }
-            })
-        };
-
-		$scope.login.logoutFromTrello = function () {
-            Trello.deauthorize();
-            updateLogin();
-        };
+        $scope.userService = userService;
 
         Trello.authorize({
             interactive: false,
-            success: updateLogin
+            success: userService.updateLogin()
         });
 
         $scope.showConfirm = function(ev) {
-            // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
                 .title('Please log in to Trello !')
                 .content('You need to authorize GTrello App to access your Trello data')
@@ -55,7 +24,7 @@ gTrelloApp
                 .cancel('Cancel');
             $mdDialog.show(confirm).then(
                 function(){
-                    $scope.login.loginToTrello();
+                    userService.loginToTrello();
                 },
                 function() {
             });
