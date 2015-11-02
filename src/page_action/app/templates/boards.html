@@ -1,10 +1,10 @@
-<md-content ng-controller="BoardController">
-  <md-list ng-init="loadBoards()">
-    <md-list-item class="md-2-line" ng-repeat="board in boards" ng-if="board.closed == false">
-    <div class="md-list-item-text">
+<md-content>
+  <md-list ng-init="vm.loadBoards()">
+    <md-list-item class="md-2-line" ng-repeat="board in vm.boards" ng-if="board.closed == false">
+        <div class="md-list-item-text">
         <!--<button ng-click="getLists(board.id)" ng-init="count=0">{{board.name}}</button>-->
-        <a href='#/lists/{{board.id}}'><h3>{{board.name}}</h3></a>
-      </div>
+        <a ng-href="#/lists/{{board.id}}"><h3>{{board.name}}</h3></a>
+        </div>
     </md-list-item>
   </md-list>
 </md-content>

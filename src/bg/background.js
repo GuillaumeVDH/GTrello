@@ -17,16 +17,3 @@ chrome.extension.onMessage.addListener(
   		break;
   	}
   });
-
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if(tab.url == "https://trello.com/1/token/approve"){
-    	chrome.cookies.get({
-    		url: "https://trello.com",
-    		name: "token"
-    	},
-    	function(cookie){
-    		localStorage["trello_token"] = cookie.value;
-    		chrome.tabs.remove(tabId);
-    	});
-    }
-});

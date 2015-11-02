@@ -1,34 +1,43 @@
-gTrelloApp
-	.controller("BoardController", ["$scope", "$q", "utilService", function($scope, $q, utilService){
-		$scope.status;
-		$scope.boards = [];
+(function(){
+	angular
+		.module("gTrelloApp")
+		.controller("BoardController", boardController);
 
-		//function to load boards into $scope.boards
-		$scope.loadBoards = function(){
+	boardController.$inject = ["$q", "utilService"];
+
+	function boardController($q, utilService){
+		var vm = this;
+
+		vm.status;
+		vm.boards = [];
+		vm.loadBoards = loadBoards;
+
+		function loadBoards(){
 			function fetchBoards() {
-		        var deferred = $q.defer();
-		        Trello.get(
-		        	'members/me/boards',
-		        	{fields: "closed,name,idOrganization,id"},
-		        	function(data) {
-		            	deferred.resolve(data);
-		        	},
-		        	function(error){
-		        		deferred.resolve(error);
-		        	}
-		        );
-		        return deferred.promise;
-	    	}
+				var deferred = $q.defer();
+				Trello.get(
+					'members/me/boards',
+					{fields: "closed,name,idOrganization,id"},
+					function(data) {
+						deferred.resolve(data);
+					},
+					function(error){
+						deferred.resolve(error);
+					}
+				);
+				return deferred.promise;
+			}
 
-		    fetchBoards().then(
-		    	function(boards) {
-		    		$scope.status = "success";
-		        	$scope.boards = boards;
-	    		},
-	    		function(error){
-	    			$scope.status = "error";
-	    			console.log("[boardController] Unable to load board : " + error.message);
-	    		}
-	    	);
-		};
-	}]);
+			fetchBoards().then(
+				function(boards) {
+					vm.status = "success";
+					vm.boards = boards;
+				},
+				function(error){
+					vm.status = "error";
+					console.log("[boardController] Unable to load board : " + error.message);
+				}
+			);
+		}
+	};
+})();
