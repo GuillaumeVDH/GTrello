@@ -1,4 +1,5 @@
 <md-content>
+    <md-progress-circular md-mode="indeterminate" ng-if="loading"></md-progress-circular>
   <md-list ng-init="vm.loadBoards()">
     <md-list-item class="md-2-line" ng-repeat="board in vm.boards" ng-if="board.closed == false">
         <div class="md-list-item-text">

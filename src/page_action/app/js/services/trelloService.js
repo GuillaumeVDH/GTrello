@@ -1,28 +1,39 @@
 (function(){ 'use strict';
     angular
         .module('gTrelloApp')
-        .service('TrelloNg', [ '$q', '$rootScope', function($q, $rootScope){
+        .factory('trelloService', trelloService);
 
-            var TrelloNg = {};
+    trelloService.$inject = ['$q', '$rootScope'];
 
-            // wrap Trello queries in angular promise
-            TrelloNg.query = function(entity_name) { // success
-                var deferred = $q.defer();
-                Trello.get(entity_name, function(data) {
-                    // wrap call to resolve in $apply as this function is out of the main event loop
-                    $rootScope.$apply(function() {
-                        deferred.resolve(data);
-                    });
-                }, function(response) { // error
-                    $rootScope.$apply(function() {
-                        deferred.reject(response);
-                    });
+    function trelloService($q, $rootScope){
+        var service = {
+            getBoards: getBoards
+        };
+
+        return service;
+
+        function query(entity_name){
+            var deferred = $q.defer();
+            $rootScope.loading = true;
+            Trello.get(entity_name, function(data) {
+                // wrap call to resolve in $apply as this function is out of the main event loop
+                $rootScope.$apply(function() {
+                    deferred.resolve(data);
+                    $rootScope.loading = false;
                 });
+            }, function(response) { // error
+                $rootScope.$apply(function() {
+                    deferred.reject(response);
+                    $rootScope.loading = false;
+                });
+            });
 
-                return deferred.promise;
-            };
+            return deferred.promise;
+        }
 
-            return TrelloNg;
-        }])
+        function getBoards(){
+            return query('members/me/boards');
+        }
+    }
 
 })();
