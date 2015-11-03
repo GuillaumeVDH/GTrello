@@ -15,6 +15,11 @@
                 controller: 'MainController',
                 controllerAs: 'vm'
             })
+            .when("/board/create", {
+                templateUrl: templateFolder + 'create/board.html',
+                controller: 'BoardCreateController',
+                controllerAs: 'vm'
+            })
             .when("/lists/:boardid", {
                 templateUrl: templateFolder + 'lists.html'
             })
