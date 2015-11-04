@@ -55,10 +55,10 @@
             return queryGet('members/me/boards');
         }
 
-        function createBoard(name, desc){
+        function createBoard(form){
             return queryPost('boards', {
-                name : boardName,
-                desc : desc
+                name : form.title,
+                desc : form.description
             });
         }
     }

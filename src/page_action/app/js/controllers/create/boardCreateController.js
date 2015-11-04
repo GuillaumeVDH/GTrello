@@ -15,8 +15,8 @@
         vm.form.description;
         vm.createBoard = createBoard;
 
-        function createBoard(){
-            trelloService.createBoard("board de test").then(
+        function createBoard(form){
+            trelloService.createBoard(form).then(
                 function(boards) {
                     console.log("board created");
                 },
