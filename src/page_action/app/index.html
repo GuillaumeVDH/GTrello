@@ -17,6 +17,7 @@
   <script type="text/javascript" src="js/constants/userConstant.js"></script>
   <script type="text/javascript" src="js/controllers/loginController.js"></script>
   <script type="text/javascript" src="js/controllers/mainController.js"></script>
+  <script type="text/javascript" src="js/controllers/create/boardCreateController.js"></script>
     <script type="text/javascript" src="js/services/userService.js"></script>
   <script type="text/javascript" src="js/services/trelloService.js"></script>
   <script type="text/javascript" src="js/services/utilService.js"></script>
@@ -27,9 +28,8 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
-<body>
-  <div ng-cloak style="min-width: 500px">
-    <md-toolbar ng-controller="LoginController as vm">
+<body flex layout="column" class="min-width: 500px">
+    <md-toolbar layout="row" ng-controller="LoginController as vm">
       <div class="md-toolbar-tools">
         <md-button class="md-icon-button" aria-label="Menu">
           <md-icon md-font-library="material-icons">menu</md-icon>
@@ -37,16 +37,15 @@
         <h2>
           <span>GTrello</span>
         </h2>
-
+        <span flex></span>
         <md-button ng-if="vm.user.isLoggedIn" class="md-icon-button" aria-label="Log out" ng-click="vm.userService.logoutFromTrello()">
           <md-icon md-font-library="material-icons">exit_to_app</md-icon>
         </md-button>
       </div>
     </md-toolbar>
 
-    <md-content>
+    <div layout="row">
       <ng-view></ng-view>
-    </md-content>
-  </div>
+    </div>
 </body>
 </html>

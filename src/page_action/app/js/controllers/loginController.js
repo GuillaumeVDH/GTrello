@@ -46,7 +46,7 @@
             interactive: false,
             success: function () {
                 userService.updateUser();
-                $location.url('/boards');
+                $location.url('/board/create');
             }
         });
     }
