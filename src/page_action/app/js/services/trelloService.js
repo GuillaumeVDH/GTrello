@@ -13,11 +13,9 @@
     function trelloService($q, $rootScope){ //TODO find an other solution than global scope
 
         var pathGetBoard = 'members/me/boards';
-        var service = {
+        return {
             getBoards: getBoards
-        };
-
-        return service;
+        }
 
         /**
          * @name getBoards
