@@ -5,15 +5,18 @@
         .module('gTrelloApp')
         .controller("BoardCreateController", ctrl);
 
-    ctrl.$inject = ['trelloService'];
+    ctrl.$inject = ['trelloService', '$timeout'];
 
-    function ctrl(trelloService) {
+    function ctrl(trelloService, $timeout) {
         var vm = this;
 
         vm.form = {};
-        vm.form.title;
-        vm.form.description;
+        vm.form.title = null;
+        vm.form.description = null;
+        vm.form.team = null;
         vm.createBoard = createBoard;
+        vm.teams = null;
+        vm.loadTeams = loadTeams;
 
         function createBoard(form){
             trelloService.createBoard(form).then(
@@ -25,6 +28,18 @@
                 }
             )
         };
+
+        function loadTeams(){
+            trelloService.getTeams().then(
+                function(teams){
+                    vm.teams = teams;
+                    console.log(teams);
+                },
+                function(error){
+                    console.log("[boardCreateController] Unable to load teams : " + error.message);
+                }
+            )
+        }
 
     };
 })();

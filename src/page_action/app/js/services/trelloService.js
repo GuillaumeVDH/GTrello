@@ -5,10 +5,12 @@
 
     trelloService.$inject = ['$q', '$rootScope'];
 
+
     function trelloService($q, $rootScope){
         var service = {
             getBoards: getBoards,
-            createBoard: createBoard
+            createBoard: createBoard,
+            getTeams: getTeams
         };
 
         return service;
@@ -58,8 +60,13 @@
         function createBoard(form){
             return queryPost('boards', {
                 name : form.title,
-                desc : form.description
+                desc : form.description,
+                idOrganization: (typeof form.team === "undefined" ? null : form.team.id)
             });
+        }
+
+        function getTeams(){
+            return queryGet('members/me/organizations');
         }
     }
 

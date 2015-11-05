@@ -3,10 +3,21 @@
         <label>Title</label>
         <input ng-model="vm.form.title">
     </md-input-container>
+
     <md-input-container class="md-block">
         <label>Description</label>
         <textarea ng-model="vm.form.description" columns="1" md-maxlength="150"></textarea>
     </md-input-container>
+
+    <md-input-container class="md-block" ng-init="vm.loadTeams()">
+        <label>Team</label>
+        <md-select ng-model="vm.form.team">
+            <md-option ng-repeat="team in vm.teams" ng-value="team">
+                {{team.displayName}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+
     <md-button ng-if="vm.form.title && vm.form.description" class="md-fab md-mini" aria-label="Create board" ng-click="vm.createBoard(vm.form)">
         <md-icon md-font-library="material-icons">done</md-icon>
     </md-button>
