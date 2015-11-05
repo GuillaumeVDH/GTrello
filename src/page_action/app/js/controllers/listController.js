@@ -1,7 +1,10 @@
-angular
-	.module('gTrelloApp')
-	.controller("ListController", ["$scope", "$q", "utilService", '$routeParams', function($scope, $q, utilService,  $routeParams){
-		$scope.status;
+/**
+ * Controller of ListController
+ * @namespace Controllers
+ */
+angular.module('gTrelloApp')
+		.controller("ListController", ["$scope", "$q", "utilService", '$routeParams', function($scope, $q, utilService,  $routeParams){
+
 		$scope.lists = [];
 		$scope.boardId=$routeParams.boardid;
 
