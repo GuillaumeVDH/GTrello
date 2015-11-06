@@ -54,7 +54,7 @@
         }
 
         function createCard(form){
-
+            trelloService.createCard(form);
         }
 
     };

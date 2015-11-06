@@ -11,7 +11,8 @@
             getBoards: getBoards,
             createBoard: createBoard,
             getTeams: getTeams,
-            getListsByBoardId: getListsByBoardId
+            getListsByBoardId: getListsByBoardId,
+            createCard: createCard
         };
 
         return service;
@@ -76,7 +77,7 @@
                 desc: (typeof form.description === "undefined" ? null : form.description),
                 due: (typeof form.dueDate === "undefined" ? null : form.dueDate),
                 idList: form.list.id,
-                urlSource: (typeof form.url === "undefined" ? null : form.url)
+                urlSource: (typeof form.url === "undefined" ? "http://www.test.com" : form.url)
             })
         }
 
