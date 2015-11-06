@@ -16,8 +16,10 @@
         return {
             getBoards: getBoards,
             createBoard: createBoard,
-            getTeams: getTeams
-        }
+            getTeams: getTeams,
+            getListsByBoardId: getListsByBoardId,
+            createCard: createCard
+        };
 
         /**
          * @name getBoards
@@ -77,6 +79,21 @@
         function getTeams(){
             return queryGet('members/me/organizations');
         }
+
+        function createCard(form){
+            return queryPost('cards', {
+                name: form.title,
+                desc: (typeof form.description === "undefined" ? null : form.description),
+                due: (typeof form.dueDate === "undefined" ? null : form.dueDate),
+                idList: form.list.id,
+                urlSource: (typeof form.url === "undefined" ? "http://www.test.com" : form.url)
+            })
+        }
+
+        function getListsByBoardId(boardId){
+            return queryGet('boards/' + boardId + '/lists');
+        }
+
     }
 
 })();
