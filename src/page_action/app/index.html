@@ -18,7 +18,8 @@
   <script type="text/javascript" src="js/controllers/loginController.js"></script>
   <script type="text/javascript" src="js/controllers/mainController.js"></script>
   <script type="text/javascript" src="js/controllers/create/boardCreateController.js"></script>
-    <script type="text/javascript" src="js/services/userService.js"></script>
+  <script type="text/javascript" src="js/controllers/create/cardCreateController.js"></script>
+  <script type="text/javascript" src="js/services/userService.js"></script>
   <script type="text/javascript" src="js/services/trelloService.js"></script>
   <script type="text/javascript" src="js/services/utilService.js"></script>
   <script type="text/javascript" src="js/controllers/boardController.js"></script>
@@ -28,7 +29,7 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
-<body flex layout="column" class="min-width: 500px">
+<body style="min-width: 500px">
     <md-toolbar layout="row" ng-controller="LoginController as vm">
       <div class="md-toolbar-tools">
         <md-button class="md-icon-button" aria-label="Menu">
@@ -44,8 +45,30 @@
       </div>
     </md-toolbar>
 
-    <div layout="row">
-      <ng-view></ng-view>
+    <div layout="row" layout-margin layout-wrap>
+      <div flex="10">
+        <md-fab-speed-dial md-direction="up" ng-class="md-fling" >
+          <md-fab-trigger>
+            <md-button class="md-fab md-warn" aria-label="Create">
+              <md-icon md-font-library="materia-icons">add</md-icon>
+            </md-button>
+          </md-fab-trigger>
+          <md-fab-actions>
+            <md-button aria-label="Board" class="md-fab md-raised md-mini" style="background-color: #666666" ng-href="#/board/create">
+              <md-icon md-font-library="materia-icons" aria-label="Create board">dashboard</md-icon>
+            </md-button>
+            <md-button aria-label="List" class="md-fab md-raised md-mini" style="background-color: #666666" ng-href="#/list/create">
+              <md-icon md-font-library="materia-icons" aria-label="Create list">view_list</md-icon>
+            </md-button>
+            <md-button aria-label="Card" class="md-fab md-raised md-mini" style="background-color: #666666" ng-href="#/card/create">
+              <md-icon md-font-library="materia-icons" aria-label="Create card">credit_card</md-icon>
+            </md-button>
+          </md-fab-actions>
+        </md-fab-speed-dial>
+      </div>
+      <ng-view flex="80" class="md-whiteframe-6dp"></ng-view>
+      <div flex="10"></div>
     </div>
+
 </body>
 </html>

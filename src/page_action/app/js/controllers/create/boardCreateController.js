@@ -5,9 +5,9 @@
         .module('gTrelloApp')
         .controller("BoardCreateController", ctrl);
 
-    ctrl.$inject = ['trelloService', '$timeout'];
+    ctrl.$inject = ['trelloService'];
 
-    function ctrl(trelloService, $timeout) {
+    function ctrl(trelloService) {
         var vm = this;
 
         vm.form = {};

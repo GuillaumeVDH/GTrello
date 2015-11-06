@@ -28,6 +28,11 @@
                 controller: 'BoardController',
                 controllerAs: 'vm'
             })
+            .when("/card/create", {
+                templateUrl: templateFolder + 'create/card.html',
+                controller: 'CardCreateController',
+                controllerAs: 'vm'
+            })
             .otherwise({
                 redirectTo: '/'
             });
