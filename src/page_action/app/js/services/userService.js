@@ -1,15 +1,20 @@
+/**
+ * Factory of userService
+ * @namespace Factories
+ */
 (function(){
-    angular
-        .module('gTrelloApp')
-        .factory('userService', userService);
+    angular.module('gTrelloApp').factory('userService', userService);
 
+    /**
+     * @namespace userService
+     * @desc Access to user account
+     * @memberOf Factories
+     */
     function userService(user){
-        var service = {
+        return {
             updateUser: updateUser,
             logoutFromTrello: logoutFromTrello
-        };
-
-        return service;
+        }
 
         function updateUser(){
             user.isLoggedIn = Trello.authorized();

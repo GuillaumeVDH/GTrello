@@ -1,14 +1,13 @@
+/**
+ * Controller of BoardController
+ * @namespace Controllers
+ */
 (function(){
-	angular
-		.module("gTrelloApp")
-		.controller("BoardController", boardController);
-
-	boardController.$inject = ['trelloService'];
+	angular.module("gTrelloApp").controller("BoardController", boardController);
 
 	function boardController(trelloService){
 		var vm = this;
 
-		vm.status;
 		vm.boards = [];
 		vm.loadBoards = loadBoards;
 
