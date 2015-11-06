@@ -1,3 +1,7 @@
+/**
+ * Controller of MainController
+ * @namespace Controllers
+ */
 (function() {
     'use strict';
 

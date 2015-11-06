@@ -1,14 +1,14 @@
+/**
+ * Service of utilService
+ * @namespace Services
+ */
 (function(){ 'user strict';
-	angular
-		.module('gTrelloApp')
-		.service('utilService', utilService);
+	angular.module('gTrelloApp').service('utilService', utilService);
 
 	function utilService(){
-		var service = {
+		return{
 			trelloInit: trelloInit
-		};
-
-		return service;
+		}
 
 		function trelloInit(){
 			Trello.setKey('5e27ed043503d1a1e999e285596621e2');

@@ -1,12 +1,10 @@
 /**
  * Created by anthonycallaert on 02/11/2015.
+ * Controller of LoginController
+ * @namespace Controllers
  */
 (function(){ 'use strict';
-    angular
-        .module('gTrelloApp')
-        .controller('LoginController', loginController);
-
-    loginController.$inject = ["utilService", "$mdDialog", "userService", "user", '$scope', '$location'];
+    angular.module('gTrelloApp').controller('LoginController', loginController);
 
     function loginController(utilService, $mdDialog, userService, user, $scope, $location){
         var vm = this;
