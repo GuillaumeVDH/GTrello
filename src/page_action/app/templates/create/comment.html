@@ -13,7 +13,7 @@
         <label>List</label>
         <md-select ng-model="vm.form.list" ng-change="vm.resetCards()">
             <md-option ng-repeat="list in vm.lists" ng-value="list">
-                {{list.name}}
+                {{list.name}} {{list.cards.length}}
             </md-option>
         </md-select>
     </md-input-container>

@@ -38,6 +38,11 @@
                 controller: 'CommentCreateController',
                 controllerAs: 'vm'
             })
+            .when("/list/create", {
+                templateUrl: templateFolder + 'create/list.html',
+                controller: 'ListCreateController',
+                controllerAs: 'vm'
+            })
             .otherwise({
                 redirectTo: '/'
             });

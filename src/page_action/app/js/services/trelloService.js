@@ -20,7 +20,8 @@
             getListsByBoardId: getListsByBoardId,
             createCard: createCard,
             getCardsByListId: getCardsByListId,
-            createComment : createComment
+            createComment : createComment,
+            createList: createList
         };
 
         /**
@@ -103,6 +104,13 @@
         function createComment(form){
             return queryPost('cards/' + form.card.id + '/actions/comments', {
                 text: form.content
+            })
+        }
+
+        function createList(form){
+            return queryPost('lists', {
+                name: form.title,
+                idBoard: form.board.id
             })
         }
 
