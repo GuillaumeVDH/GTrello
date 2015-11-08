@@ -33,6 +33,11 @@
                 controller: 'CardCreateController',
                 controllerAs: 'vm'
             })
+            .when("/comment/create", {
+                templateUrl: templateFolder + 'create/comment.html',
+                controller: 'CommentCreateController',
+                controllerAs: 'vm'
+            })
             .otherwise({
                 redirectTo: '/'
             });

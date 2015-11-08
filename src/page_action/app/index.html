@@ -19,6 +19,7 @@
   <script type="text/javascript" src="js/controllers/mainController.js"></script>
   <script type="text/javascript" src="js/controllers/create/boardCreateController.js"></script>
   <script type="text/javascript" src="js/controllers/create/cardCreateController.js"></script>
+  <script type="text/javascript" src="js/controllers/create/commentCreateController.js"></script>
   <script type="text/javascript" src="js/services/userService.js"></script>
   <script type="text/javascript" src="js/services/trelloService.js"></script>
   <script type="text/javascript" src="js/services/utilService.js"></script>
@@ -46,8 +47,8 @@
     </md-toolbar>
 
     <div layout="row" layout-margin layout-wrap>
-      <div flex="10">
-        <md-fab-speed-dial md-direction="up" ng-class="md-fling" >
+      <div flex="20">
+        <md-fab-speed-dial md-direction="right" class="md-scale md-fab-bottom-left">
           <md-fab-trigger>
             <md-button class="md-fab md-warn" aria-label="Create">
               <md-icon md-font-library="materia-icons">add</md-icon>
@@ -63,11 +64,13 @@
             <md-button aria-label="Card" class="md-fab md-raised md-mini" style="background-color: #666666" ng-href="#/card/create">
               <md-icon md-font-library="materia-icons" aria-label="Create card">credit_card</md-icon>
             </md-button>
+            <md-button aria-label="Comment" class="md-fab md-raised md-mini" style="background-color: #666666" ng-href="#/comment/create">
+              <md-icon md-font-library="materia-icons" aria-label="Create comment">comment</md-icon>
+            </md-button>
           </md-fab-actions>
         </md-fab-speed-dial>
       </div>
       <ng-view flex="80" class="md-whiteframe-6dp"></ng-view>
-      <div flex="10"></div>
     </div>
 
 </body>

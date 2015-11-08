@@ -5,8 +5,6 @@
         .module('gTrelloApp')
         .controller("BoardCreateController", ctrl);
 
-    ctrl.$inject = ['trelloService'];
-
     function ctrl(trelloService) {
         var vm = this;
 

@@ -18,7 +18,9 @@
             createBoard: createBoard,
             getTeams: getTeams,
             getListsByBoardId: getListsByBoardId,
-            createCard: createCard
+            createCard: createCard,
+            getCardsByListId: getCardsByListId,
+            createComment : createComment
         };
 
         /**
@@ -92,6 +94,16 @@
 
         function getListsByBoardId(boardId){
             return queryGet('boards/' + boardId + '/lists');
+        }
+
+        function getCardsByListId(listId){
+            return queryGet('lists/' + listId + '/cards');
+        }
+
+        function createComment(form){
+            return queryPost('cards/' + form.card.id + '/actions/comments', {
+                text: form.content
+            })
         }
 
     }
