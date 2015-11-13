@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>GTrello</title>
+
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -18,7 +19,7 @@
   <script type="text/javascript" src="js/controllers/loginController.js"></script>
   <script type="text/javascript" src="js/controllers/mainController.js"></script>
   <script type="text/javascript" src="js/controllers/create/boardCreateController.js"></script>
-    <script type="text/javascript" src="js/services/userService.js"></script>
+  <script type="text/javascript" src="js/services/userService.js"></script>
   <script type="text/javascript" src="js/services/trelloService.js"></script>
   <script type="text/javascript" src="js/services/utilService.js"></script>
   <script type="text/javascript" src="js/controllers/boardController.js"></script>
@@ -28,6 +29,7 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
+<!-- inject:js -->
 <body flex layout="column" class="min-width: 500px">
     <md-toolbar layout="row" ng-controller="LoginController as vm">
       <div class="md-toolbar-tools">
@@ -47,5 +49,6 @@
     <div layout="row">
       <ng-view></ng-view>
     </div>
+    <!-- endinject -->
 </body>
 </html>
