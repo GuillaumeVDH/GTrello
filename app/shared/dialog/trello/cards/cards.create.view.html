@@ -1,0 +1,36 @@
+<form name="vm.form">
+
+  <md-input-container class="md-block" ng-init="vm.loadBoards()">
+    <label>Board</label>
+    <md-select ng-model="vm.form.board" ng-change="vm.resetLists()">
+      <md-option ng-repeat="board in vm.boards" ng-value="board" ng-if="!board.closed">
+        {{board.name}}
+      </md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container class="md-block" ng-click="vm.loadLists(vm.form.board)" ng-if="vm.form.board">
+    <label>List</label>
+    <md-select ng-model="vm.form.list">
+      <md-option ng-repeat="list in vm.lists" ng-value="list">
+        {{list.name}}
+      </md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container class="md-block" ng-if="vm.form.list">
+    <label>Title</label>
+    <input ng-model="vm.form.title">
+  </md-input-container>
+
+  <md-datepicker ng-model="vm.form.dueDate" md-placeholder="Due date" ng-if="vm.form.title"></md-datepicker>
+
+  <md-input-container class="md-block" ng-if="vm.form.title">
+    <label>Description</label>
+    <textarea ng-model="vm.form.description" columns="1" md-maxlength="150"></textarea>
+  </md-input-container>
+
+  <md-button ng-if="vm.form.title" class="md-raised md-primary" aria-label="Create card" ng-click="vm.createCard(vm.form)">
+    <span>Send</span><md-icon md-font-library="material-icons">send</md-icon>
+  </md-button>
+</form>
