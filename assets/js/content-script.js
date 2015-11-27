@@ -13,7 +13,6 @@
   var observer = new MutationObserver(function(mutations){
     mutations.forEach(function(mutation){
       if(mutation.addedNodes.length > 0){
-        console.log('mutation');
         var responseDivs = document.getElementsByClassName("gH acX");
         for(var i = 0; i < responseDivs.length; i++){
           if(responseDivs[i].getAttribute('ng-controller') == null){

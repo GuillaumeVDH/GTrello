@@ -8,39 +8,24 @@
     .module('gTrello')
     .controller("MailButtonController", mailButtonController);
 
-  function mailButtonController($scope, $mdDialog) {
+  function mailButtonController($scope, $mdDialog, PATH) {
     var vm = this;
 
     vm.openDialog = openDialog;
 
-    function openDialog(event){
-      console.log('openDialog');
+    function openDialog(event, $state){
       var el = document.getElementsByClassName('h7');
       $mdDialog.show({
-        controller: DialogController,
-        template: '<p>TEST</p>',
+        controller: 'DialogMainController',
+        templateUrl: chrome.extension.getURL(PATH.TEMPLATE.LAYOUT),
         parent: angular.element(document.body),
         targetEvent: event,
         clickOutsideToClose:true,
-        disableParentScroll: false
-      })
-        .then(function(answer) {
-          $scope.status = 'You said the information was "' + answer + '".';
-        }, function() {
-          $scope.status = 'You cancelled the dialog.';
-        });
-    }
+        disableParentScroll: false,
+        onShowing : function(){
 
-    function DialogController($scope, $mdDialog) {
-      $scope.hide = function() {
-        $mdDialog.hide();
-      };
-      $scope.cancel = function() {
-        $mdDialog.cancel();
-      };
-      $scope.answer = function(answer) {
-        $mdDialog.hide(answer);
-      };
+        }
+      });
     }
 
   };

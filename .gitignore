@@ -1,18 +1,11 @@
-
-######################
-# Angular directories 
-######################
-target/
-generated-java/
-build/
-node/
-node_modules/
-**/bower_components/
-dist/
-out/
-######################
-# IntelliJ IDEA
-######################
-.idea/
-*.iml
-
+node_modules
+temp
+.tmp
+dist
+.sass-cache
+app/bower_components
+test/bower_components
+package
+scripts/*.js
+scripts/*.map
+.idea

@@ -1,43 +1,34 @@
-<div>
-  <md-toolbar layout="row" ng-controller="LoginController as vm" style="min-width: 500px">
-    <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" aria-label="Menu">
-        <md-icon md-font-library="material-icons">menu</md-icon>
-      </md-button>
-      <h2>
-        <span>GTrello</span>
-      </h2>
-      <span flex></span>
-      <md-button ng-if="vm.user.isLoggedIn" class="md-icon-button" aria-label="Log out" ng-click="vm.userService.logoutFromTrello()">
-        <md-icon md-font-library="material-icons">exit_to_app</md-icon>
-      </md-button>
-    </div>
-  </md-toolbar>
+<div ng-cloak style="min-width: 500px">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  <md-content>
+    <md-toolbar ng-controller="LoginController as vm">
+      <div class="md-toolbar-tools">
+        <md-menu>
+          <md-button class="md-icon-button" aria-label="Menu">
+            <md-icon md-font-library="material-icons">menu</md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button>
+                <md-icon class="md-icon-button" aria-label="Options">options</md-icon>
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+        <h2>
+          <span>GTrello</span>
+        </h2>
+        <span flex></span>
+        <!--<md-button ng-if="vm.user.isLoggedIn" class="md-icon-button" aria-label="Log out" ng-click="vm.userService.logoutFromTrello()">
+          <md-icon md-font-library="material-icons">exit_to_app</md-icon>
+        </md-button>-->
+      </div>
+    </md-toolbar>
+  </md-content>
 
-  <div layout="row" layout-margin layout-wrap>
-    <div flex="20">
-      <md-fab-speed-dial md-direction="right" class="md-scale md-fab-bottom-left">
-        <md-fab-trigger>
-          <md-button class="md-fab md-warn" aria-label="Create">
-            <md-icon md-font-library="materia-icons">add</md-icon>
-          </md-button>
-        </md-fab-trigger>
-        <md-fab-actions>
-          <md-button aria-label="Board" class="md-fab md-raised md-mini" style="background-color: #666666" ng-href="#/board/create">
-            <md-icon md-font-library="materia-icons" aria-label="Create board">dashboard</md-icon>
-          </md-button>
-          <md-button aria-label="List" class="md-fab md-raised md-mini" style="background-color: #666666" ng-href="#/list/create">
-            <md-icon md-font-library="materia-icons" aria-label="Create list">view_list</md-icon>
-          </md-button>
-          <md-button aria-label="Card" class="md-fab md-raised md-mini" style="background-color: #666666" ng-href="#/card/create">
-            <md-icon md-font-library="materia-icons" aria-label="Create card">credit_card</md-icon>
-          </md-button>
-          <md-button aria-label="Comment" class="md-fab md-raised md-mini" style="background-color: #666666" ng-href="#/comment/create">
-            <md-icon md-font-library="materia-icons" aria-label="Create comment">comment</md-icon>
-          </md-button>
-        </md-fab-actions>
-      </md-fab-speed-dial>
-    </div>
-    <div ui-view flex="80" class="md-whiteframe-6dp"></div>
-  </div>
+  <md-content>
+    <div ui-view></div>
+  </md-content>
+
 </div>

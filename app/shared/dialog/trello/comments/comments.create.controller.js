@@ -3,7 +3,7 @@
 
   angular
     .module('gTrello')
-    .controller("CommentCreateController", ctrl);
+    .controller("CommentsCreateController", ctrl);
 
   function ctrl(trelloService) {
     var vm = this;

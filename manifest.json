@@ -1,44 +1,72 @@
 {
-  "name": "GTrello",
-  "version": "0.0.2",
+  "name": "__MSG_appName__",
+  "version": "0.0.1",
   "manifest_version": 2,
-  "description": "Googlize your trello !",
+  "description": "__MSG_appDescription__",
   "icons": {
-    "19": "icons/icon-19.png",
-    "256": "icons/icon-256.png"
+    "16": "assets/img/icon-16.png",
+    "128": "assets/img/icon-128.png"
   },
   "default_locale": "en",
-  "background": {
-    "scripts": [
-      "src/bg/jquery.min.js",
-      "src/bg/trello_client.js",
-      "src/bg/background.js"
-    ],
-    "persistent": true
-  },
-  "page_action": {
-    "default_icon": "icons/icon-19.png",
-    "default_title": "GTrello",
-    "default_popup": "src/page_action/app/index.html"
-  },
   "permissions": [
     "cookies",
-    "tabs",
     "storage",
+    "tabs",
     "https://trello.com/*"
   ],
   "content_scripts": [
     {
       "matches": [
-        "*://mail.google.com/*"
+        "https://mail.google.com/*"
+      ],
+      "css": [
+        "app/bower_components/angular/angular-csp.css",
+        "app/bower_components/angular-material/angular-material.min.css",
+        "assets/css/main.css"
       ],
       "js": [
-        "src/inject/inject.js"
-      ]
+        "app/bower_components/jquery/dist/jquery.min.js",
+        "app/bower_components/angular/angular.min.js",
+        "app/bower_components/angular-animate/angular-animate.min.js",
+        "app/bower_components/angular-aria/angular-aria.min.js",
+        "app/bower_components/angular-material/angular-material.min.js",
+        "app/bower_components/angular-ui-router/release/angular-ui-router.min.js",
+        "app/shared/gTrello.module.js",
+        "app/shared/gTrello.constants.js",
+        "app/shared/gTrello.routes.js",
+        "app/shared/dialog/login/user.constant.js",
+        "app/shared/dialog/login/user.service.js",
+        "app/shared/util.service.js",
+        "app/shared/dialog/main.controller.js",
+        "app/shared/gmail/mailButton.controller.js",
+        "app/shared/dialog/login/login.controller.js",
+        "app/shared/dialog/login/requireLogin.controller.js",
+        "app/shared/dialog/trello/trello.service.js",
+        "app/shared/dialog/trello/boards/boards.list.controller.js",
+        "app/shared/dialog/trello/boards/boards.create.controller.js",
+        "app/shared/dialog/trello/lists/lists.create.controller.js",
+        "app/shared/dialog/trello/cards/cards.create.controller.js",
+        "app/shared/dialog/trello/comments/comments.create.controller.js",
+        "assets/js/content-script.js",
+        "assets/js/trello_client.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
     }
   ],
+  "background": {
+    "scripts": [
+      "assets/js/trello_client.js",
+      "assets/js/background.js"
+    ],
+    "persistent": true
+  },
+  /*"content_security_policy": "script-src 'self'; object-src 'self'",*/
   "web_accessible_resources": [
-        "src/settings/index.html"
+    "app/bower_components/*",
+    "app/shared/*",
+    "settings/index.html",
+    "assets/*"
   ],
-  "options_page": "src/settings/index.html"
+  "options_page": "settings/index.html"
 }
